@@ -18,6 +18,17 @@ bool Game::Initialize() {
 		SDL_Log("Failed to create window : %s", SDL_GetError());
 	}
 
+	//랜더러 생성
+	mRenderer = SDL_CreateRenderer(mWindow, NULL);
+	if (!mRenderer) {
+		SDL_Log("Failed to create renderer : %s", SDL_GetError());
+	}
+
+	//틱 초기화
+	mTicksCount = SDL_GetTicksNS();
+
+	mIsRunning = true;
+
 	return true;
 }
 
@@ -39,19 +50,52 @@ void Game::Shutdown() {
 void Game::ProcessInput()
 {
 	SDL_Event event;
+
+	// 이벤트 큐에서 가져와 처리
 	while (SDL_PollEvent(&event)) {
-		switch (event.type) {
-		case SDL_EVENT_QUIT:
-			mIsRunning = false;
+		switch (event.type) {	
+		case SDL_EVENT_QUIT:	// 창의 X를 클릭했을 때
+			mIsRunning = false;	// 루프를 종료하여 게임을 끝냅니다. 
 			break;
 		}
 	}
+
+	const bool* state = SDL_GetKeyboardState(NULL); // 키보드의 상태를 가져옵니다.
+	if (state[SDL_SCANCODE_ESCAPE]) {				// 해당 키가 ESC일 시
+		mIsRunning = false;							// 루프를 종료하여 게임을 끝냅니다.
+		return;
+	}
+	
+	float mX, mY;
+	const Uint32 MouseState = SDL_GetMouseState(&mX,&mY);	// 마우스의 상태를 가져오고, 포인터의 위치를 저장합니다.
+	if (MouseState & SDL_BUTTON_MASK(SDL_BUTTON_RIGHT)) {	// 비트마스킹 기법으로 Mask된 버튼의 상태를 확인합니다.
+		mIsRunning = false;									// 루프를 종료하여 게임을 끝냅니다.
+		return;
+	}
 }
 
-void Game::UpdateGame()
-{
+void Game::UpdateGame(){
+	Uint64 currentTicks = SDL_GetTicksNS();								// 현재 시간을 가져옵니다.
+	Uint64 elapsedNS = currentTicks - mTicksCount;						// 틱 차이로 시간 계산
+	if (elapsedNS < TARGET_Frame) {										// 목표 프레임 시간보다 빨리 계산되었을 시
+		SDL_DelayNS(TARGET_Frame - elapsedNS);							// 딜레이 후 실제 현재 시간으로 갱신
+		currentTicks = SDL_GetTicksNS();								// 실제 경과 시간 재계산
+	}
+	float deltaTime = (float)(currentTicks - mTicksCount) / NANOSECOND;	// 시간 차 계산
+
+	deltaTime = SDL_clamp(deltaTime, 0.0f, 0.05f);						// 터널링 방치를 위한 프레임 타임 제한
+	mTicksCount = currentTicks;
+
 }
 
 void Game::GenerateOutput()
 {
+	SDL_SetRenderDrawColor(mRenderer, 0, 0, 255, 255);	// 채울 색을 결정합니다.
+	SDL_RenderClear(mRenderer);							// 버퍼의 내용를 지웁니다.
+
+	// 화면 색칠
+	SDL_FRect A = { 0,0,1024,768 };
+	SDL_RenderFillRect(mRenderer, &A);					// Rect를 만듭니다.
+
+	SDL_RenderPresent(mRenderer);						// 변경한 백버퍼와 교체합니다.
 }
