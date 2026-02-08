@@ -1,6 +1,4 @@
 #pragma once
-#ifndef GAME_H	// game.h 헤더 파일이 포함 안 되었을 경우에만 포합시킵니다.
-#define GAME_H	// game.h 정의
 
 #include<SDL3/SDL.h>
 #include<vector>
