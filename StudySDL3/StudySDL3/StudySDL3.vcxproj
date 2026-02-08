@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Component.cpp" />
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -146,6 +147,8 @@
 =======
     <ClCompile Include="DrawComponent.cpp" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin/main
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="main.cpp" />
@@ -157,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Component.h" />
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -173,6 +177,8 @@
 =======
     <ClInclude Include="DrawComponent.h" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin/main
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="MoveComponent.h" />

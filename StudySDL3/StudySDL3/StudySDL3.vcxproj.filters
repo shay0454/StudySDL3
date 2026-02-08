@@ -19,6 +19,7 @@
     <Filter Include="헤더 파일\Engine">
       <UniqueIdentifier>{13946971-7863-4d88-a9e8-ce9e30c0c5c3}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -46,6 +47,8 @@
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin/main
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,6 +63,7 @@
     <ClCompile Include="Component.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -99,6 +103,8 @@
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin/main
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -110,6 +116,7 @@
     <ClInclude Include="Game.h">
       <Filter>헤더 파일\Engine</Filter>
     </ClInclude>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -152,5 +159,7 @@
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin/main
   </ItemGroup>
 </Project>
