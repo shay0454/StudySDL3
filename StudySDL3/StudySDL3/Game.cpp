@@ -1,7 +1,8 @@
-#include"Game.h"
+﻿#include"Game.h"
 #include<SDL3/SDL.h>
 #include"Actor.h"
 #include<algorithm>
+
 Game::Game() {}
 
 // 초기화
@@ -67,7 +68,7 @@ void Game::ProcessInput()
 		mIsRunning = false;							// 루프를 종료하여 게임을 끝냅니다.
 		return;
 	}
-	
+
 	float mX, mY;
 	const Uint32 MouseState = SDL_GetMouseState(&mX,&mY);	// 마우스의 상태를 가져오고, 포인터의 위치를 저장합니다.
 	if (MouseState & SDL_BUTTON_MASK(SDL_BUTTON_RIGHT)) {	// 비트마스킹 기법으로 Mask된 버튼의 상태를 확인합니다.
@@ -128,6 +129,7 @@ void Game::GenerateOutput()
 	SDL_FRect A = { 0,0,1024,768 };
 	SDL_RenderFillRect(mRenderer, &A);					// Rect를 만듭니다.
 
+
 	SDL_RenderPresent(mRenderer);						// 변경한 백버퍼와 교체합니다.
 }
 
@@ -155,4 +157,5 @@ void Game::RemoveActor(Actor* actor) {
 		std::iter_swap(iter, mActors.end() - 1);			// swap 후 pop으로 효율적으로 제거
 		mActors.pop_back();									
 	}
+
 }
