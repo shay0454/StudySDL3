@@ -1,16 +1,19 @@
 #pragma once
 class Component {
 	public:
-		// ¾×ÅÍÀÇ ±â´ÉÀ» ¾²±â À§ÇØ °¡Á®¿À°í, ¾÷µ¥ÀÌÆ® ¿ì¼±¼øÀ§¸¦ µÎ±â À§ÇØ updateOrder¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ ï¿½ï¿½ï¿½ï¿½ updateOrderï¿½ï¿½ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
 		Component(class Actor* owner, int updateOrder = 100);	
 		~Component();
 
-		virtual void Update(float deltaTime);				// ¾÷µ¥ÀÌÆ®
+		virtual void Update(float deltaTime);				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 	
-		int GetUpdateOrder() const { return mUpdateOrder; }	// ¾÷µ¥ÀÌÆ® ¼ø¼­ ¹ÝÈ¯
-	
+		int GetUpdateOrder() const { return mUpdateOrder; }	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+
+	public:
+		class Actor* GetOwner()const { return mOwner; }
+
 	private:
-		class Actor* mOwner;								// ÇØ´ç ÄÄÆ÷³ÍÆ®¸¦ °¡Áø ¾×ÅÍ
-		int mUpdateOrder;									// ¿ì¼± ¼øÀ§¸¦ µÎ¾î, ½ÇÇà ¼ø¼­¸¦ Á¦¾îÇÕ´Ï´Ù.
+		class Actor* mOwner;								// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int mUpdateOrder;									// ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¾ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 };
 

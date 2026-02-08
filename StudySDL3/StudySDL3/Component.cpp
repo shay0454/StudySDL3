@@ -1,10 +1,15 @@
 #include"Component.h"
+#include"Actor.h"
 
-// ÀÚ½Å¸¦ °¡Áö°í ÀÖ´Â ¾×ÅÍ¸¦ ÀúÀåÇÏ°í ÀÚ½ÅÀÇ ¿ì¼±¼øÀ§¸¦ ÃÊ±âÈ­ ÇÕ´Ï´Ù.
-Component::Component(Actor* owner, int updateOrder) :mOwner(owner), mUpdateOrder(updateOrder) {}
+// ï¿½Ú½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Õ´Ï´ï¿½.
+Component::Component(Actor* owner, int updateOrder) :mOwner(owner), mUpdateOrder(updateOrder) {
+	mOwner->AddComponent(this);
+}
 
-Component::~Component() {}
+Component::~Component() {
+	mOwner->RemoveComponent(this);
+}
 
-// ÄÄÆ÷³ÍÆ® ¾÷µ¥ÀÌÆ®
+
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 void Component::Update(float deltaTime) {}
-

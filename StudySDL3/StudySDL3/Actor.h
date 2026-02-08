@@ -4,28 +4,28 @@
 class Actor {
 	public:
 		enum State {
-			EActive, EPaused, EDead							// ¾×ÅÍÀÇ »óÅÂ¸¦ ±â·ÏÇÏ±â À§ÇÑ enum
+			EActive, EPaused, EDead							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ enum
 		};
-		// gameÀÇ ±â´ÉÀ» »ç¿ëÇÏ±â À§ÇØ ¸Å°³º¯¼ö·Î °¡Á®¿É´Ï´Ù.
+		// gameï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
 		Actor(class Game* game);
 		virtual ~Actor();
 
-		void Update(float deltaTime);				// game¿¡°Ô¼­ ¿¢ÅÍ ¾÷µ¥ÀÌÆ®¸¦ ¸í·É ½Ã ¼öÇàÇÏ±â À§ÇÑ ÇÔ¼öÀÔ´Ï´Ù.
-		void UpdateComponents(float deltaTime);		// ¾×ÅÍ°¡ °¡Áø ÄÄÆ÷³ÍÆ®µéÀ» ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù.
-		virtual void UpdateActor(float deltaTime);	// ¾×ÅÍ ÀÚÃ¼¸¦ ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù.
+		void Update(float deltaTime);				// gameï¿½ï¿½ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½Ô´Ï´ï¿½.
+		void UpdateComponents(float deltaTime);		// ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Õ´Ï´ï¿½.
+		virtual void UpdateActor(float deltaTime);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Õ´Ï´ï¿½.
 
 	public:
-		void AddComponent(class Component* component);		// ÄÄÆ÷³ÍÆ®¸¦ Ãß°¡ÇÕ´Ï´Ù.
-		void RemoveComponent(class Component* component);	// ÄÄÆ÷³ÍÆ®¸¦ Á¦°ÅÇÕ´Ï´Ù.
+		void AddComponent(class Component* component);		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
+		void RemoveComponent(class Component* component);	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 
 		void SetState(State state) { mState = state; }		
 		State GetState() const { return mState; }			
 
 	private:
-		State mState;										// ¾×ÅÍÀÇ »óÅÂ¿¡ µû¶ó ÀÛµ¿À» º¯°æÇÏ±â À§ÇØ »ç¿ëÇÕ´Ï´Ù.
-		std::vector<class Component*> mComponents;			// ÄÄÆ÷³ÍÆ®¸¦ ¾÷µ¥ÀÌÆ® ÇÏ±â À§ÇÑ º¤ÅÍ
-		class Game* mGame;									// °ÔÀÓ ½Ã½ºÅÛÀÇ ±â´ÉÀ» »ç¿ëÇÏ±â À§ÇÑ º¯¼ö
+		State mState;										// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+		std::vector<class Component*> mComponents;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		class Game* mGame;									// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-		float mX, mY;										// ¿ùµå ÁÂÇ¥
+		float mX, mY;										// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥
 };
 

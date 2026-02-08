@@ -2,13 +2,17 @@
 #include"Game.h"
 #include"Component.h"
 
-// ¾×ÅÍÀÇ »óÅÂ¿Í °ÔÀÓ °´Ã¼ º¯¼ö µîÀ» ÃÊ±âÈ­ ÇÕ´Ï´Ù.
-Actor::Actor(Game* game) :mState(EActive),mGame(game),mX(0),mY(0){}
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Õ´Ï´ï¿½.
+Actor::Actor(Game* game) :mState(EActive),mGame(game),mPosition(Vector2(0,0)){
+	mGame->AddActor(this);
+}
 
-Actor::~Actor(){}
+Actor::~Actor(){
+	mGame->RemoveActor(this);
+}
 
-// ¾÷µ¥ÀÌÆ®
-// ¾×ÅÍÀÇ »óÅÂ°¡ EActive ÀÏ ¶§, ÄÄÆ÷³ÍÆ®¿Í »ó¼Ó¹ÞÀº °¢°¢ÀÇ ¾×ÅÍ¸¦ ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù.
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ EActive ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Õ´Ï´ï¿½.
 void Actor::Update(float deltaTime) {				
 	if (mState == EActive) {						
 		UpdateComponents(deltaTime);
@@ -16,33 +20,33 @@ void Actor::Update(float deltaTime) {
 	}
 }
 
-// ÄÄÆ÷³ÍÆ® ¾÷µ¥ÀÌÆ®
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 void Actor::UpdateComponents(float deltaTime) {
 	for (auto comp : mComponents) {
-		comp->Update(deltaTime);					// °¢°¢ÀÇ ÄÄÆ÷µéÀ» ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù.
+		comp->Update(deltaTime);					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Õ´Ï´ï¿½.
 	}
 }
 
-// ¾×ÅÍ ¾÷µ¥ÀÌÆ®
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 void Actor::UpdateActor(float deltaTime){}
 
-// ÄÄÆ÷³ÍÆ® Ãß°¡
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ß°ï¿½
 void Actor::AddComponent(Component* component) {
-	int myOrder = component->GetUpdateOrder();		// ¾÷µ¥ÀÌÆ® ¿ì¼± ¼øÀ§¸¦ °¡Á®¿É´Ï´Ù.
+	int myOrder = component->GetUpdateOrder();		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
 	auto iter = mComponents.begin();
 	for (; iter != mComponents.end(); ++iter) {
-		if (myOrder < (*iter)->GetUpdateOrder()) {	// ÀÚ½Åº¸´Ù ¿ì¼±¼øÀ§°¡ ³·Àº ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Ã£½À´Ï´Ù.
+		if (myOrder < (*iter)->GetUpdateOrder()) {	// ï¿½Ú½Åºï¿½ï¿½ï¿½ ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½Ï´ï¿½.
 			break;
 		}
 	}
 
-	mComponents.insert(iter, component);			// ÇØ´ç À§Ä¡¿¡ »ðÀÔÇÏ¿©, Á¤·Ä »óÅÂ¸¦ À¯ÁöÇÕ´Ï´Ù.
+	mComponents.insert(iter, component);			// ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 }
 
-// ÄÄÆ÷³ÍÆ® Á¦°Å
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 void Actor::RemoveComponent(Component* component) {
-	auto iter = find(mComponents.begin(), mComponents.end(), component);	// ÇØ´ç ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Ã£½À´Ï´Ù.
+	auto iter = find(mComponents.begin(), mComponents.end(), component);	// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½Ï´ï¿½.
 	if (iter != mComponents.end()) {
-		mComponents.erase(iter);											// erase·Î ¼ø¼­¸¦ À¯ÁöÇÑ »óÅÂ·Î Á¦°ÅÇÕ´Ï´Ù.
+		mComponents.erase(iter);											// eraseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 	}
 }

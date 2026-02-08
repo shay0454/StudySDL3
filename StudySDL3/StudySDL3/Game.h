@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #ifndef GAME_H	// game.h 헤더 파일이 포함 안 되었을 경우에만 포합시킵니다.
 #define GAME_H	// game.h 정의
 
@@ -26,7 +26,6 @@ public:
 	void AddActor(class Actor* actor);		// 액터 추가
 	void RemoveActor(class Actor* actor);	// 액터 제거
 
-private:
 	class SDL_Window* mWindow;
 	class SDL_Renderer* mRenderer;
 
