@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -128,11 +128,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Component.cpp" />
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="DrawComponent.cpp" />
+>>>>>>> Stashed changes
+=======
+    <ClCompile Include="DrawComponent.cpp" />
+>>>>>>> Stashed changes
+=======
+    <ClCompile Include="DrawComponent.cpp" />
+>>>>>>> Stashed changes
+=======
+    <ClCompile Include="DrawComponent.cpp" />
+>>>>>>> Stashed changes
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="SnakeBody.cpp" />
+    <ClCompile Include="SnakeInputComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="Component.h" />
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="DrawComponent.h" />
+>>>>>>> Stashed changes
+=======
+    <ClInclude Include="DrawComponent.h" />
+>>>>>>> Stashed changes
+=======
+    <ClInclude Include="DrawComponent.h" />
+>>>>>>> Stashed changes
+=======
+    <ClInclude Include="DrawComponent.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="Game.h" />
+    <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="Snake.h" />
+    <ClInclude Include="SnakeBody.h" />
+    <ClInclude Include="SnakeInputComponent.h" />
+    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
