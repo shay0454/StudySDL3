@@ -21,7 +21,10 @@ class Actor {
 		void RemoveComponent(class Component* component);	// 컴포넌트를 제거합니다.
 
 		void SetState(State state) { mState = state; }		
-		State GetState() const { return mState; }			
+		State GetState() const { return mState; }
+
+		void SetPosition(Vector2 position) { mPosition = position; }
+		const Vector2& GetPosition() const { return mPosition; }
 
 	private:
 		State mState;										// 액터의 상태에 따라 기능 수행가능한 지 확인합니다.
