@@ -20,6 +20,7 @@
     <ClCompile Include="DrawComponent.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="MoveComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputComponent.h">
@@ -41,6 +42,7 @@
     <ClInclude Include="DrawComponent.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="MoveComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="헤더 파일">

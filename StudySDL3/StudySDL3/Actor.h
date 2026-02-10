@@ -19,12 +19,17 @@ class Actor {
 		void ProcessInput(const bool* keyState);			// 시스템 수준의 입력 처리를 컴포넌트에게 맡깁니다.
 		virtual void ActorInput(const bool* keyState) {}	// 액터 내에서 입력 처리합니다.
 
+		void Draw(SDL_Renderer* renderer);
+
 	public:
 		void AddComponent(class Component* component);		// 컴포넌트를 추가합니다.
 		void RemoveComponent(class Component* component);	// 컴포넌트를 제거합니다.
 
 		void SetState(State state) { mState = state; }		
 		State GetState() const { return mState; }
+
+		void SetScale(float scale) { mScale = scale; }
+		float GetScale() const { return mScale; }
 
 		void SetPosition(Vector2 position) { mPosition = position; }
 		const Vector2& GetPosition() const { return mPosition; }
@@ -34,6 +39,7 @@ class Actor {
 		std::vector<Component*> mComponents;				// 가지고 있는 컴포넌트 벡터, 업데이트를 위해 벡터로 구성
 		class Game* mGame;									// game.h내의 기능을 사용하기 위한 변수
 
+		float mScale;										// 스케일 ( 크기와 별개)
 		Vector2 mPosition;									// 월드 좌표
 };
 

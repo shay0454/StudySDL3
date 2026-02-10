@@ -1,4 +1,4 @@
-#include"Game.h"
+﻿#include"Game.h"
 #include<SDL3/SDL.h>
 #include"Actor.h"
 #include<algorithm>
@@ -134,10 +134,13 @@ void Game::GenerateOutput()
 	SDL_SetRenderDrawColor(mRenderer, 0, 0, 255, 255);	// 채울 색을 결정합니다.
 	SDL_RenderClear(mRenderer);							// 버퍼의 내용를 지웁니다.
 
-	// 화면 색칠
+	// 배경 색칠
 	SDL_FRect A = { 0,0,1024,768 };
 	SDL_RenderFillRect(mRenderer, &A);					// Rect를 만듭니다.
 
+	for (auto actor : mActors) {
+		actor->Draw(mRenderer);							// 렌더링 컴포넌트가 있는 액터를 렌더링합니다.
+	}
 
 	SDL_RenderPresent(mRenderer);						// 변경한 백버퍼와 교체합니다.
 }
