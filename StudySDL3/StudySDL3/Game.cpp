@@ -1,8 +1,8 @@
-﻿#include"Game.h"
+#include"Game.h"
 #include<SDL3/SDL.h>
 #include"Actor.h"
 #include<algorithm>
-
+#include"Player.h"
 Game::Game() {}
 
 // 초기화
@@ -28,6 +28,8 @@ bool Game::Initialize() {
 
 	//틱 초기화
 	mTicksCount = SDL_GetTicksNS();
+
+	mPlayer = new Player(this);
 
 	mIsRunning = true;
 
@@ -75,6 +77,13 @@ void Game::ProcessInput()
 		mIsRunning = false;									// 루프를 종료하여 게임을 끝냅니다.
 		return;
 	}
+
+	// 액터에게 입력 처리 넘깁니다.
+	mUpdateActors = true;
+	for (auto actor : mActors) {
+		actor->ProcessInput(state);
+	}
+	mUpdateActors = false;
 }
 
 void Game::UpdateGame(){

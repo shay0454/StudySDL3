@@ -34,4 +34,6 @@ private:
 	std::vector<class Actor*> mPendingActors;	// 업데이트 중일 때 crash를 방지하기 위해 있는 대기열 액터 벡터
 	bool mUpdateActors;							// 업데이트 중인지를 확인하기 위한 변수
 
+	class Player* mPlayer;
+
 };

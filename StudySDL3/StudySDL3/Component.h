@@ -7,13 +7,14 @@ class Component {
 
 		virtual void Update(float deltaTime);				// 컴포넌트 업데이트
 	
+		virtual void ProcessInput(const bool* keyState) {}	// 입력 처리 (InputCompnent에서 오버라이드)
 		int GetUpdateOrder() const { return mUpdateOrder; }	// 업데이트 순위 반환
 
 	public:
 		class Actor* GetOwner()const { return mOwner; }
 
 	private:
-		class Actor* mOwner;								// 자기를 가지고 있는 액터
-		int mUpdateOrder;									// 우선 순위를 두어, 실행 순서를 제어합니다.
+		class Actor* mOwner;				// 자기를 가지고 있는 액터
+		int mUpdateOrder;					// 우선 순위를 두어, 실행 순서를 제어합니다. (낮을수록 우선)
 };
 

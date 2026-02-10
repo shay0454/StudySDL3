@@ -31,6 +31,24 @@ void Actor::UpdateComponents(float deltaTime) {
 // 자기 자신(Actor 상속 객체)을 업데이트 합니다.
 void Actor::UpdateActor(float deltaTime){}
 
+// 시스템 수준의 입력 처리를 컴포넌트에게 맡깁니다.
+void Actor::ProcessInput(const bool* keyState) {
+	if (GetState() == State::EActive) {				// 살아 있을 경우에만 입력 처리를 맡깁니다.
+		for (auto component : mComponents) {
+			component->ProcessInput(keyState);
+		}
+	}
+}
+
+// 렌더링 컴포넌트를 위한 렌더링 함수
+void Actor::Draw(SDL_Renderer* renderer) {
+	if (GetState() == State::EActive) {
+		for (auto component : mComponents) {
+			component->Draw(renderer);
+		}
+	}
+}
+
 // 컴포넌트 추가
 void Actor::AddComponent(Component* component) {
 	int myOrder = component->GetUpdateOrder();		// 컴포넌트의 업데이트 순위를 가져옵니다.
