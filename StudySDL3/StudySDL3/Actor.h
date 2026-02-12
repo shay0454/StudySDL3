@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<vector>
 #include"Component.h"
 #include"Vector2.h"
@@ -41,5 +41,6 @@ class Actor {
 
 		float mScale;										// 스케일 ( 크기와 별개)
 		Vector2 mPosition;									// 월드 좌표
+
 };
 

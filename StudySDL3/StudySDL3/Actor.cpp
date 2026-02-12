@@ -1,9 +1,14 @@
-#include"Actor.h"
+﻿#include"Actor.h"
 #include"Game.h"
 #include"Component.h"
 
 // 액터의 상태와 게임 객체 변수 저장, 그 외의 자잘한 기능을 수행합니다..
-Actor::Actor(Game* game) :mState(EActive),mGame(game),mPosition(Vector2(0,0)),mScale(1){
+Actor::Actor(Game* game) 
+	:mState(EActive), 
+	mGame(game),
+	mPosition(Vector2(0,0)),
+	mScale(1)
+{
 	mGame->AddActor(this);
 }
 
