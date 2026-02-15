@@ -1,4 +1,5 @@
-#pragma once
+﻿#pragma once
+#include<cmath>
 class Vector2 {
 	public:
 		Vector2(float inX = 0, float inY = 0) :x(inX), y(inY) {}
@@ -7,12 +8,12 @@ class Vector2 {
 		float x, y;
 
 	public:
-		// ���� �� (a + b)
+		// 벡터 합 (a + b)
 		friend Vector2 operator+(const Vector2& a,const Vector2& b) {
 			return Vector2(a.x + b.x, a.y + b.y);
 		}
 
-		// ���� �� (a - b)
+		// 벡터 차 (a - b)
 		friend Vector2 operator-(const Vector2& a,const Vector2& b) {
 			return Vector2(a.x - b.x, a.y - b.y);
 		}
@@ -30,21 +31,45 @@ class Vector2 {
 		}
 
 		Vector2 operator+=(const Vector2 other) {
-			this->x += other.y;
-			this->y += other.y;
+			x += other.x;
+			y += other.y;
 			return *this;
 		}
 
 		Vector2 operator-=(const Vector2 other) {
-			this->x -= other.y;
-			this->y -= other.y;
+			x -= other.x;
+			y -= other.y;
 			return *this;
 		}
 
 		Vector2 operator*=(float scalar) {
-			this->x *= scalar;
-			this->y *= scalar;
+			x *= scalar;
+			y *= scalar;
 			return *this;
+		}
+
+		float LengthSq() const {
+			return (x * x + y * y);
+		}
+
+		float Length() const {
+			return sqrtf(LengthSq());
+		}
+
+		void Normalize() {
+			float length = Length();
+			if (length > 0.f) {
+				x /= length;
+				y /= length;
+			}
+		}
+
+
+		// 클래스의 인스턴스 없이 호출하기 위해 static으로 설정
+		static Vector2 Normalize(const Vector2& v) {
+			Vector2 temp = v;
+			temp.Normalize();
+			return temp;
 		}
 
 };

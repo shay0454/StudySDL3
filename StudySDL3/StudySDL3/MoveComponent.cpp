@@ -6,7 +6,8 @@ MoveComponent::MoveComponent(Actor* owner,float speed)
 
 // 방향에 따른 속도를 설정합니다.
 void MoveComponent::SetDirection(const Vector2& dir) {
-	mVelocity = dir * mSpeed;
+	// 방향을 단위 벡터로 변경
+	mVelocity = Vector2::Normalize(dir) * mSpeed;	
 }
 
 // 위치를 업데이트 합니다.
