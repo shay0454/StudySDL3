@@ -4,9 +4,6 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="InputComponent.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Actor.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
@@ -16,16 +13,20 @@
     <ClCompile Include="Game.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="DrawComponent.cpp">
+    <ClCompile Include="Player.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="DrawComponent.cpp">
+      <Filter>소스 파일\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>소스 파일\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>소스 파일\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="InputComponent.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -38,11 +39,18 @@
     <ClInclude Include="Game.h">
       <Filter>헤더 파일\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h" />
     <ClInclude Include="DrawComponent.h">
+      <Filter>헤더 파일\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>헤더 파일\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>헤더 파일\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MoveComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="헤더 파일">
@@ -56,6 +64,12 @@
     </Filter>
     <Filter Include="소스 파일\Engine">
       <UniqueIdentifier>{0c92ada5-c7bc-48b5-a10e-a8173d3658d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Components">
+      <UniqueIdentifier>{655470e5-73fa-45b0-99f9-56826a8044b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Components">
+      <UniqueIdentifier>{d8256115-7e76-4d77-b6a8-c1988909081a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

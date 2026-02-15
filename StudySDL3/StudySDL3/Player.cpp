@@ -1,4 +1,4 @@
-#include"Player.h"
+﻿#include"Player.h"
 #include"Game.h"
 #include"Vector2.h"
 #include"InputComponent.h"
@@ -8,13 +8,19 @@
 Player::Player(Game* game) 
 	:Actor(game),
 	mIC(nullptr),
+	mMC(nullptr),
 	mDC(nullptr){
 	
 	mIC = new InputComponent(this);
+	mMC = new MoveComponent(this);
+
+	mIC->SetMoveComponent(mMC);				// 입력에 따른 이동 컴포넌트 설정
+
 	mDC = new DrawComponent(this);
 
-	SetPosition(Vector2(500.f, 386.f));
-	mDC->SetSize(Vector2(64.f,64.f));
+
+	SetPosition(Vector2(500.f, 386.f));		// 위치 설정
+	mDC->SetSize(Vector2(64.f,64.f));		// 크기 설정
 }
 
 void Player::UpdateActor(float deltaTime) {

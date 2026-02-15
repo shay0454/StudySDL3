@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include"Actor.h"
 
 class Player :public Actor {
@@ -8,5 +8,6 @@ class Player :public Actor {
 
 	private:
 		class InputComponent* mIC;	// 입력 처리 컴포넌트
+		class MoveComponent* mMC;	// 이동 처리 컴포넌트
 		class DrawComponent* mDC;	// 렌더링 컴포넌트
 };
