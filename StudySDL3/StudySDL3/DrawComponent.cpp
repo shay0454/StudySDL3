@@ -1,13 +1,15 @@
-#include"DrawComponent.h"
+﻿#include"DrawComponent.h"
 #include"SDL3/SDL.h"
 #include"Actor.h"
 #include"Game.h"
 
-DrawComponent::DrawComponent(Actor* owner, int updateOrder) :Component(owner, updateOrder) {
+// 기본 색을 초록으로 설정
+DrawComponent::DrawComponent(Actor* owner, int updateOrder) :Component(owner, updateOrder), mColor{0,255,0,255} {
 }
 
 void DrawComponent::Draw(SDL_Renderer* renderer) {
-	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+	// 색깔 설정
+	SDL_SetRenderDrawColor(renderer, mColor.r, mColor.g, mColor.b, mColor.a);
 
 	Vector2 pos = GetOwner()->GetPosition();
 

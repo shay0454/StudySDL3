@@ -8,6 +8,8 @@ class DrawComponent :public Component {
 
 		void Draw(class SDL_Renderer* renderer) override;	// 렌더링
 
+		void SetColor(SDL_Color color) { mColor = color; }
 
 	private:
+		SDL_Color mColor;
 };
