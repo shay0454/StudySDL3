@@ -22,6 +22,12 @@ public:
 	void AddActor(class Actor* actor);		// 액터 추가
 	void RemoveActor(class Actor* actor);	// 액터 제거
 
+	void AddCollider(class CollisionComponent* collider);		// 콜루전 컴포넌트 추가
+	void RemoveCollider(class CollisionComponent* collider);	// 콜루전 컴포넌트 제거
+
+public:
+	void CheckCollision();										// 충돌 처리를 위해 순회
+	
 private:
 	class SDL_Window* mWindow;
 	class SDL_Renderer* mRenderer;
@@ -33,6 +39,8 @@ private:
 	std::vector<class Actor*> mActors;			// 실제로 있는 액터들로 액터들을 업데이트 하기 위한 벡터
 	std::vector<class Actor*> mPendingActors;	// 업데이트 중일 때 crash를 방지하기 위해 있는 대기열 액터 벡터
 	bool mUpdateActors;							// 업데이트 중인지를 확인하기 위한 변수
+
+	std::vector<class CollisionComponent*> mColliders;	// 충돌 처리를 위한 콜루전 컴포넌트 벡터
 
 	class Player* mPlayer;
 

@@ -1,8 +1,11 @@
 ﻿#include"Game.h"
 #include<SDL3/SDL.h>
 #include"Actor.h"
+#include"CollisionComponent.h"
 #include<algorithm>
 #include"Player.h"
+#include"Item.h"
+
 Game::Game() {}
 
 // 초기화
@@ -30,6 +33,8 @@ bool Game::Initialize() {
 	mTicksCount = SDL_GetTicksNS();
 
 	mPlayer = new Player(this);
+
+	for (int i = 0; i < 3; i++) {new Item(this); }
 
 	mIsRunning = true;
 
@@ -112,6 +117,9 @@ void Game::UpdateGame(){
 	}
 	mPendingActors.clear();								// 대기열 액터들을 다 넣었으므로 clear시킵니다.
 
+	// 충돌 처리 확인
+	CheckCollision();
+
 	// 액터 죽음 확인
 	std::vector<Actor*> deadActors;
 	for (Actor* actor : mActors) {
@@ -170,4 +178,41 @@ void Game::RemoveActor(Actor* actor) {
 		mActors.pop_back();									
 	}
 
+}
+
+// 충돌 컴포넌트 추가
+void Game::AddCollider(CollisionComponent* collider) {
+	mColliders.emplace_back(collider);
+}
+
+// 충돌 컴포넌트 제거
+void Game::RemoveCollider(CollisionComponent* collider) {
+	auto iter = std::find(mColliders.begin(), mColliders.end(), collider);
+	if (iter != mColliders.end()) {
+		mColliders.erase(iter);
+	}
+}
+
+// 충돌 처리
+void Game::CheckCollision() {
+	// 각각의 충돌 처리를 위해 순회합니다.
+	for (int i = 0; i < mColliders.size(); i++) {
+		for (int j = i + 1; j < mColliders.size(); j++) {
+			CollisionComponent* collider1 = mColliders[i];
+			CollisionComponent* collider2 = mColliders[j];
+
+			Actor* A1 = collider1->GetOwner();
+			Actor* A2 = collider2->GetOwner();
+
+			if (!collider1->Intersect(*collider2)) continue;
+
+			// 죽었음에도 충돌 처리됨을 방지
+			if (A1->GetState() == Actor::EDead || A2->GetState() == Actor::EDead) continue;
+			A1->OnCollision(A2);
+
+			if (A1->GetState() == Actor::EDead || A2->GetState() == Actor::EDead) continue;
+			A2->OnCollision(A1);
+
+		}
+	}
 }

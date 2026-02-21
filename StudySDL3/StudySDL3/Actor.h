@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<vector>
 #include"Component.h"
 #include"Vector2.h"
@@ -16,10 +16,13 @@ class Actor {
 		void UpdateComponents(float deltaTime);		// 액터가 가진 컴포넌트들을 업데이트 합니다.
 		virtual void UpdateActor(float deltaTime);	// 액터 자체를 업데이트 합니다.
 
+	public:
 		void ProcessInput(const bool* keyState);			// 시스템 수준의 입력 처리를 컴포넌트에게 맡깁니다.
 		virtual void ActorInput(const bool* keyState) {}	// 액터 내에서 입력 처리합니다.
 
 		void Draw(SDL_Renderer* renderer);
+
+		void virtual OnCollision(Actor* other) {}			// 충돌 시, 각 Actor의 충돌 처리를 위해 사용합니다.
 
 	public:
 		void AddComponent(class Component* component);		// 컴포넌트를 추가합니다.
@@ -36,6 +39,8 @@ class Actor {
 
 		void SetPosition(Vector2 position) { mPosition = position; }
 		const Vector2& GetPosition() const { return mPosition; }
+
+		Game* GetGame() const { return mGame; }
 
 	private:
 		State mState;										// 액터의 상태에 따라 기능 수행가능한 지 확인합니다.
