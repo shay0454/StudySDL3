@@ -1,4 +1,4 @@
-﻿#include"Player.h"
+#include"Player.h"
 #include"Game.h"
 #include"Vector2.h"
 #include"InputComponent.h"
@@ -20,7 +20,7 @@ Player::Player(Game* game)
 
 
 	SetPosition(Vector2(500.f, 386.f));		// 위치 설정
-	mDC->SetSize(Vector2(64.f,64.f));		// 크기 설정
+	SetSize(Vector2(64.f,64.f));			// 크기 설정
 }
 
 void Player::UpdateActor(float deltaTime) {

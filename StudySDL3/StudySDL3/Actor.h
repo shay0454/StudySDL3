@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<vector>
 #include"Component.h"
 #include"Vector2.h"
@@ -31,6 +31,9 @@ class Actor {
 		void SetScale(float scale) { mScale = scale; }
 		float GetScale() const { return mScale; }
 
+		void SetSize(Vector2 size) { mSize = size; }
+		const Vector2& GetSize() const { return mSize; }
+
 		void SetPosition(Vector2 position) { mPosition = position; }
 		const Vector2& GetPosition() const { return mPosition; }
 
@@ -40,6 +43,7 @@ class Actor {
 		class Game* mGame;									// game.h내의 기능을 사용하기 위한 변수
 
 		float mScale;										// 스케일 ( 크기와 별개)
+		Vector2 mSize;										// 렌더링될 크기 ( 충돌 처리에서의 번겨로움으로 이동)
 		Vector2 mPosition;									// 월드 좌표
 
 };
